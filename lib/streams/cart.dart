@@ -86,8 +86,9 @@ class _CartPageState extends State<CartPage> {
                                                 ),
                                               ),
                                               Container(
+                                                width: 200,
                                                 padding:
-                                                    EdgeInsets.only(left: 16.0),
+                                                    EdgeInsets.only(left: 10.0),
                                                 child: Column(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.start,
@@ -107,7 +108,7 @@ class _CartPageState extends State<CartPage> {
                                                               .symmetric(
                                                           vertical: 6.0),
                                                       child: Text(
-                                                        'Rp.${_productmap['price']}',
+                                                        '${fc.format(_productmap['price'])}',
                                                         style: TextStyle(
                                                             color: Theme.of(
                                                                     context)
@@ -119,7 +120,7 @@ class _CartPageState extends State<CartPage> {
                                                       ),
                                                     ),
                                                     Text(
-                                                      'Capacity: ${document.data()['size']} L',
+                                                      '${document.data()['size']}',
                                                       style: TextStyle(
                                                           color: Colors.black,
                                                           fontSize: 16.0,
@@ -194,7 +195,7 @@ class _CartPageState extends State<CartPage> {
                                             fontWeight: FontWeight.w600),
                                       ),
                                       Text(
-                                        'Rp. $totalcartprice',
+                                        '${fc.format(totalcartprice)}',
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 25,

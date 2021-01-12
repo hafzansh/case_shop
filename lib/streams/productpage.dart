@@ -5,6 +5,7 @@ import 'package:poggers/widgets/custom_actionbar.dart';
 import 'package:poggers/widgets/imageswipe.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:intl/intl.dart';
 
 class ProductPage extends StatefulWidget {
   final String id;
@@ -12,6 +13,8 @@ class ProductPage extends StatefulWidget {
   @override
   _ProductPageState createState() => _ProductPageState();
 }
+
+final fc = new NumberFormat("Rp #,##0", "en_US");
 
 class _ProductPageState extends State<ProductPage> {
   FirebaseServices _firebaseServices = FirebaseServices();
@@ -105,7 +108,7 @@ class _ProductPageState extends State<ProductPage> {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 24.0, vertical: 5.0),
                     child: Text(
-                      'Rp. ${documentdetails['price']}' ?? 'price',
+                      '${fc.format(documentdetails['price'])}' ?? 'price',
                       style: TextStyle(
                           fontWeight: FontWeight.w600,
                           color: Theme.of(context).accentColor,

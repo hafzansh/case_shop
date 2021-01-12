@@ -54,82 +54,95 @@ class SavedTab extends StatelessWidget {
                                   return Padding(
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 24.0, vertical: 12.0),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(20),
-                                      child: Container(
-                                        color: Theme.of(context).accentColor,
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Container(
-                                              width: double.infinity,
-                                              height: 200,
-                                              child: ClipRRect(
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft:
-                                                        Radius.circular(20)),
-                                                child: Image.network(
-                                                  '${_productmap['images'][0]}',
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Container(
-                                                  padding: EdgeInsets.only(
-                                                      left: 16.0),
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Text(
-                                                        '${_productmap['title']}',
-                                                        style: TextStyle(
-                                                            color: Colors.white,
-                                                            fontSize: 25.0,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w600),
-                                                      ),
-                                                    ],
+                                    child: Material(
+                                      elevation: 5,
+                                      shape: BeveledRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(20)),
+                                      ),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(20),
+                                        child: Container(
+                                          color: Theme.of(context)
+                                              .accentColor
+                                              .withOpacity(.8),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Container(
+                                                width: double.infinity,
+                                                height: 150,
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                          topLeft:
+                                                              Radius.circular(
+                                                                  20)),
+                                                  child: Image.network(
+                                                    '${_productmap['images'][0]}',
+                                                    fit: BoxFit.cover,
                                                   ),
                                                 ),
-                                                GestureDetector(
-                                                  onTap: () {
-                                                    // _firebaseServices.userref
-                                                    //     .doc(_firebaseServices
-                                                    //         .getuserid())
-                                                    //     .collection('Saved')
-                                                    //     .doc(document.id)
-                                                    //     .delete();
-                                                    showAlertDialog(
-                                                        context, document);
-                                                  },
-                                                  child: Container(
-                                                      width: 60,
-                                                      height: 60,
-                                                      decoration: BoxDecoration(
-                                                          color: Colors.red,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      2.0)),
-                                                      child: Icon(
-                                                        Icons.delete_outline,
-                                                        color: Colors.white,
-                                                      )),
-                                                )
-                                              ],
-                                            ),
-                                          ],
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Container(
+                                                    padding: EdgeInsets.only(
+                                                        left: 16.0),
+                                                    child: Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .start,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          '${_productmap['title']}',
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontSize: 25.0,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  GestureDetector(
+                                                    onTap: () {
+                                                      // _firebaseServices.userref
+                                                      //     .doc(_firebaseServices
+                                                      //         .getuserid())
+                                                      //     .collection('Saved')
+                                                      //     .doc(document.id)
+                                                      //     .delete();
+                                                      showAlertDialog(
+                                                          context, document);
+                                                    },
+                                                    child: Container(
+                                                        width: 50,
+                                                        height: 50,
+                                                        decoration: BoxDecoration(
+                                                            color: Colors.red,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        2.0)),
+                                                        child: Icon(
+                                                          Icons.delete_outline,
+                                                          color: Colors.white,
+                                                        )),
+                                                  )
+                                                ],
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),

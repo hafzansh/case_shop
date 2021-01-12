@@ -8,6 +8,7 @@ class HomeProductCard extends StatelessWidget {
   final String imageurl;
   final String title;
   final String price;
+
   HomeProductCard({this.productid, this.imageurl, this.title, this.price});
   @override
   Widget build(BuildContext context) {
@@ -54,8 +55,9 @@ class HomeProductCard extends StatelessWidget {
             Container(
               padding: EdgeInsets.only(left: 20),
               child: Text(
-                "IDR. $price",
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                '${fc.format(int.parse(price))}',
+                // "Rp $price",
+                style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
               ),
             )
           ],

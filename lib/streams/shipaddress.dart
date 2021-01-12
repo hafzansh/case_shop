@@ -195,8 +195,8 @@ class _ShippingAddressState extends State<ShippingAddress> {
                       width: 10,
                     ),
                     Text(
-                      'Add New Address',
-                      style: Constants.boldheading,
+                      'Add New',
+                      style: Constants.textstyle,
                     )
                   ],
                 ),
@@ -204,7 +204,7 @@ class _ShippingAddressState extends State<ShippingAddress> {
             ),
           ),
           CustomActionBar(
-            title: 'Select Address',
+            title: 'Addresses',
             hastitle: true,
             hasbackground: true,
             hasbackarrow: true,
