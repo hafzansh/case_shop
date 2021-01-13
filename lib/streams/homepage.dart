@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
                 _tabno = num;
               });
             },
-            children: [HomeTab(), SearchTab(), SavedTab()],
+            children: [HomeTab(), HomeTab(), SearchTab(), SavedTab()],
           ),
         ),
         BottomTabs(
@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
                 duration: Duration(microseconds: 3000),
                 curve: Curves.easeInOut);
           },
-        )
+        ),
       ]),
     ));
   }

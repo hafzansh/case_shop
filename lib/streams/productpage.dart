@@ -27,10 +27,11 @@ class _ProductPageState extends State<ProductPage> {
   String _selectedproductcapacity = '0.5';
 
   final SnackBar _snackBar = SnackBar(
-      content: Text('Product added to the cart'),
+      content: Text('Produk ditambahkan ke keranjang'),
       backgroundColor: Colors.blueGrey);
   final SnackBar _savedsnackBar = SnackBar(
-      content: Text('Product saved'), backgroundColor: Colors.blueGrey);
+      content: Text('Produk ditambahkan ke wishlist'),
+      backgroundColor: Colors.blueGrey);
 
   Future addtocart() {
     return _firebaseServices.userref

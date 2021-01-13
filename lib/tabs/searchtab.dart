@@ -32,7 +32,7 @@ class _SearchTabState extends State<SearchTab> {
       searchedproducts = [];
       value = value.substring(0, 1).toUpperCase() + value.substring(1);
       allproducts.forEach((document) {
-        if (document['title'].substring(0, value.length) == value) {
+        if (document['vendor'].substring(0, value.length) == value) {
           searchedproducts.add(document);
         }
       });
@@ -47,7 +47,7 @@ class _SearchTabState extends State<SearchTab> {
     return finalproducts.length == 0
         ? Center(
             child: Text(
-            'Search Results',
+            'Hasil Pencarian',
             style: Constants.textstyle,
           ))
         : ListView(
@@ -102,7 +102,7 @@ class _SearchTabState extends State<SearchTab> {
           Padding(
             padding: const EdgeInsets.only(top: 30),
             child: CustomInput(
-              hinttext: 'Search here....',
+              hinttext: 'Cari vendor...',
               onChanged: (value) {
                 search(value);
               },

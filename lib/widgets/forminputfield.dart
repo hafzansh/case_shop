@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
+
 class FormInputField extends StatelessWidget {
   final String hinttext;
   final Function onChanged;
-  FormInputField({this.hinttext,this.onChanged});
+  FormInputField({this.hinttext, this.onChanged});
   @override
   Widget build(BuildContext context) {
-    return  Padding(
+    return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: TextFormField(
         onChanged: onChanged,
         textInputAction: TextInputAction.next,
-        validator: (value){
-          if(value.isEmpty){
-            return 'Please enter some text';
+        validator: (value) {
+          if (value.isEmpty) {
+            return 'Mohon isi kolom teks';
           }
           return null;
         },
         decoration: InputDecoration(
             hintText: hinttext,
             hintStyle: TextStyle(fontSize: 18.0),
-            contentPadding: EdgeInsets.all(10)
-        ),
+            contentPadding: EdgeInsets.all(10)),
       ),
     );
   }

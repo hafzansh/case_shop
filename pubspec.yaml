@@ -28,6 +28,7 @@ dependencies:
   convex_bottom_bar: ^2.6.0
   cool_alert: ^1.0.3
   cupertino_icons: ^1.0.0
+  direct_select_flutter: ^1.0.7
   firebase_auth: ^0.18.3
   firebase_core: ^0.5.2
   flutter_form_builder: ^3.7.2

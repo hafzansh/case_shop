@@ -1,6 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+// import 'package:direct_select_flutter/direct_select_container.dart';
+// import 'package:direct_select_flutter/direct_select_item.dart';
+// import 'package:direct_select_flutter/direct_select_list.dart';
+// final dsl = DirectSelectList<String>(
+//     values: _cities,
+//     defaultItemIndex: 3,
+//     itemBuilder: (String value) => getDropDownMenuItem(value),
+//     focusedItemDecoration: _getDslDecoration(),
+//     onItemSelectedListener: (item, index, context) {
+//       Scaffold.of(context).showSnackBar(SnackBar(content: Text(item)));
+//     });
 
+// DirectSelectItem<String> getDropDownMenuItem(String value) {
+//   return DirectSelectItem<String>(
+//       itemHeight: 56,
+//       value: value,
+//       itemBuilder: (context, value) {
+//         return Text(value);
+//       });
+// }
 class CapacityButtons extends StatefulWidget {
   final List capacitylist;
   final Function(String) selectedcapacity;

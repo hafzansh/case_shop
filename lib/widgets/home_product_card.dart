@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:poggers/streams/productpage.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'dart:math' as math;
 
 class HomeProductCard extends StatelessWidget {
@@ -14,10 +15,7 @@ class HomeProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => ProductPage(id: productid)));
+        Get.to(ProductPage(id: productid));
       },
       child: Container(
         height: 280,

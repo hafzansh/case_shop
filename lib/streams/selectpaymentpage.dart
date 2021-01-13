@@ -3,11 +3,14 @@ import 'package:poggers/widgets/custom_actionbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
+import 'package:get/get.dart';
 import 'package:upi_pay/upi_pay.dart';
+import 'package:intl/intl.dart';
 
 class SelectPaymentPage extends StatefulWidget {
   // ignore: non_constant_identifier_names
   final String address_id;
+
   // ignore: non_constant_identifier_names
   SelectPaymentPage({this.address_id});
   @override
@@ -15,6 +18,8 @@ class SelectPaymentPage extends StatefulWidget {
 }
 
 class _SelectPaymentPageState extends State<SelectPaymentPage> {
+  var data = Get.arguments;
+  final fc = new NumberFormat("Rp #,##0", "en_US");
   Future<List<ApplicationMeta>> _appsFuture;
   @override
   void initState() {
@@ -40,7 +45,7 @@ class _SelectPaymentPageState extends State<SelectPaymentPage> {
           Padding(
             padding: EdgeInsets.only(top: 110),
             child: Container(
-              height: 180,
+              height: 141,
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
@@ -49,44 +54,27 @@ class _SelectPaymentPageState extends State<SelectPaymentPage> {
               child: Column(
                 children: [
                   Text(
-                    'Your Order Price:',
-                    style: Constants.boldheading,
+                    'Total Tagihan:',
+                    style: Constants.textstyle,
                   ),
                   Text(
-                    'Rs XXX',
+                    '${fc.format(int.parse(data[0]))}',
                     style: TextStyle(
                         color: Theme.of(context).accentColor,
                         fontSize: 36,
                         fontWeight: FontWeight.w600),
                   ),
-                  Text(
-                    'Order Details...>>>',
-                    style: TextStyle(
-                        color: Colors.blueAccent,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 20),
-                  )
+                  // Text(
+                  //   'Order Details...>>>',
+                  //   style: TextStyle(
+                  //       color: Colors.blueAccent,
+                  //       fontWeight: FontWeight.w600,
+                  //       fontSize: 20),
+                  // )
                 ],
               ),
             ),
           ),
-          //   Padding(
-          //     padding: const EdgeInsets.only(top: 200),
-          //     child: GestureDetector(
-          //       onTap: (){
-          //         initiatetransaction(app);
-          //       },
-          //       child: Container(
-          //       child: Row(
-          //       children: [
-          //
-          //
-          //         Text('${app.name}',style: Constants.boldheading,)
-          //       ],
-          // ),
-          // ),
-          //     ),
-          //   ),
           Padding(
             padding: const EdgeInsets.only(top: 0),
             child: Center(
@@ -134,7 +122,7 @@ class _SelectPaymentPageState extends State<SelectPaymentPage> {
           ),
           CustomActionBar(
             hastitle: true,
-            title: 'Payment Method',
+            title: 'Pembayaran',
             hascartbutton: false,
             hasbackarrow: true,
             hasbackground: true,
@@ -143,20 +131,4 @@ class _SelectPaymentPageState extends State<SelectPaymentPage> {
       ),
     );
   }
-  // Widget displayupiapps(){
-  //
-  //     return ListView(
-  //       padding: EdgeInsets.only(top: 150),
-  //       children: _appsFuture.map((app){
-  //         return Container(
-  //           child: Row(
-  //             children: [
-  //               Image.memory(app.icon,height: 40,width: 40,)
-  //             ],
-  //           ),
-  //         );
-  //       }).toList(),
-  //     );
-  //   }
-
 }

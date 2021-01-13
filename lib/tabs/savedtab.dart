@@ -162,7 +162,7 @@ class SavedTab extends StatelessWidget {
               );
             }),
         CustomActionBar(
-          title: 'Saved Items',
+          title: 'Wishlist',
           hasbackarrow: false,
           hastitle: true,
         )

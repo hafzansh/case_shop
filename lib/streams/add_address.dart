@@ -17,6 +17,7 @@ class AddAddress extends StatelessWidget {
   String city;
   String state;
   String pincode;
+  AddAddress({this.name});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,49 +30,49 @@ class AddAddress extends StatelessWidget {
               child: ListView(
                 children: [
                   FormInputField(
-                    hinttext: 'Name',
+                    hinttext: 'Nama',
                     onChanged: (value) {
                       name = value;
                     },
                   ),
                   FormInputField(
-                    hinttext: 'Mobile No.',
+                    hinttext: 'Nomor Handphone',
                     onChanged: (value) {
                       mobile_no = value;
                     },
                   ),
                   FormInputField(
-                    hinttext: 'House No.,Building name',
+                    hinttext: 'Alamat Rumah',
                     onChanged: (value) {
                       houseno = value;
                     },
                   ),
                   FormInputField(
-                    hinttext: 'Road name,Area,Colony',
+                    hinttext: 'Jalan',
                     onChanged: (value) {
                       roadname = value;
                     },
                   ),
                   FormInputField(
-                    hinttext: 'Landmark',
+                    hinttext: 'Kecamatan',
                     onChanged: (value) {
                       landmark = value;
                     },
                   ),
                   FormInputField(
-                    hinttext: 'City',
+                    hinttext: 'Kota',
                     onChanged: (value) {
                       city = value;
                     },
                   ),
                   FormInputField(
-                    hinttext: 'State',
+                    hinttext: 'Provinsi',
                     onChanged: (value) {
                       state = value;
                     },
                   ),
                   FormInputField(
-                    hinttext: 'Pincode',
+                    hinttext: 'Kode POS',
                     onChanged: (value) {
                       pincode = value;
                     },

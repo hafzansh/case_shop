@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get.dart';
 import 'package:poggers/services/firebase_services.dart';
 import 'package:poggers/streams/productpage.dart';
 import 'package:poggers/streams/shipaddress.dart';
@@ -14,7 +15,9 @@ class CartPage extends StatefulWidget {
 
 class _CartPageState extends State<CartPage> {
   FirebaseServices _firebaseServices = FirebaseServices();
+
   int totalcartprice = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,11 +46,7 @@ class _CartPageState extends State<CartPage> {
                                 totalcartprice + document.data()['price'];
                             return GestureDetector(
                                 onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              ProductPage(id: document.id)));
+                                  Get.to(ProductPage(id: document.id));
                                 },
                                 child: FutureBuilder(
                                     future: _firebaseServices.productref
@@ -203,13 +202,11 @@ class _CartPageState extends State<CartPage> {
                                       )
                                     ],
                                   ),
-                                  GestureDetector(
+                                  InkWell(
                                     onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  ShippingAddress()));
+                                      Get.to(ShippingAddress(), arguments: [
+                                        totalcartprice.toString()
+                                      ]);
                                     },
                                     child: Container(
                                         padding: EdgeInsets.symmetric(
@@ -219,7 +216,7 @@ class _CartPageState extends State<CartPage> {
                                             borderRadius:
                                                 BorderRadius.circular(100)),
                                         child: Text(
-                                          'Checkout',
+                                          'Alamat',
                                           style: TextStyle(
                                               color: Colors.black,
                                               fontSize: 22.0,
@@ -240,7 +237,7 @@ class _CartPageState extends State<CartPage> {
                 );
               }),
           CustomActionBar(
-            title: 'Cart',
+            title: 'Keranjang',
             hastitle: true,
             hasbackground: true,
             hasbackarrow: true,

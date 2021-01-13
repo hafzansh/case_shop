@@ -21,9 +21,9 @@ class _BottomTabsState extends State<BottomTabs> {
         barrierDismissible: false,
         builder: (context) {
           return AlertDialog(
-            title: Text('Logout'),
+            title: Text('Keluar'),
             content: Text(
-              'Do you really want to logout?',
+              'Apakah anda ingin keluar?',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
             ),
             actions: [
@@ -34,12 +34,13 @@ class _BottomTabsState extends State<BottomTabs> {
                   });
                 },
                 child: Container(
+                  width: 100,
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                       color: Theme.of(context).accentColor,
                       borderRadius: BorderRadius.circular(12.0)),
                   child: Text(
-                    'Confirm',
+                    'Ya',
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w600,
@@ -55,13 +56,17 @@ class _BottomTabsState extends State<BottomTabs> {
                   Navigator.pop(context);
                 },
                 child: Container(
+                  width: 100,
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                       color: Color(0xffDCDCDC),
                       borderRadius: BorderRadius.circular(12.0)),
-                  child: Text(
-                    'Cancel',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                  child: Center(
+                    child: Text(
+                      'Tidak',
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                    ),
                   ),
                 ),
               ),
@@ -97,21 +102,28 @@ class _BottomTabsState extends State<BottomTabs> {
             },
           ),
           BottomTabsButton(
-              icon: Icons.search,
+              icon: Icons.design_services,
               selected: _activetab == 1,
               onPressed: () {
                 widget.ontabclick(1);
               }),
           BottomTabsButton(
-            icon: Icons.favorite,
+            icon: Icons.search,
             selected: _activetab == 2,
             onPressed: () {
               widget.ontabclick(2);
             },
           ),
           BottomTabsButton(
-            icon: Icons.arrow_forward,
+            icon: Icons.favorite,
             selected: _activetab == 3,
+            onPressed: () {
+              widget.ontabclick(3);
+            },
+          ),
+          BottomTabsButton(
+            icon: Icons.arrow_forward,
+            selected: _activetab == 4,
             onPressed: () {
               alertdailogbox();
             },
