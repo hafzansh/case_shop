@@ -1,11 +1,12 @@
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:poggers/constants.dart';
 import 'package:poggers/widgets/custom_actionbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
-import 'package:upi_pay/upi_pay.dart';
 import 'package:intl/intl.dart';
+import 'package:awesome_card/awesome_card.dart';
 
 class SelectPaymentPage extends StatefulWidget {
   // ignore: non_constant_identifier_names
@@ -20,106 +21,205 @@ class SelectPaymentPage extends StatefulWidget {
 class _SelectPaymentPageState extends State<SelectPaymentPage> {
   var data = Get.arguments;
   final fc = new NumberFormat("Rp #,##0", "en_US");
-  Future<List<ApplicationMeta>> _appsFuture;
+  String cardNumber = "";
+  String cardHolderName = "";
+  String expiryDate = "";
+  String cvv = "";
+  bool showBack = false;
+
+  FocusNode _focusNode;
+
   @override
   void initState() {
-    _appsFuture = UpiPay.getInstalledUpiApplications();
     super.initState();
+    _focusNode = new FocusNode();
+    _focusNode.addListener(() {
+      setState(() {
+        _focusNode.hasFocus ? showBack = true : showBack = false;
+      });
+    });
   }
 
-  Future initiatetransaction(ApplicationMeta app) {
-    return UpiPay.initiateTransaction(
-        app: app.upiApplication,
-        receiverUpiAddress: '7066852002@ybl',
-        receiverName: 'Prasaneet',
-        transactionRef: '123456788',
-        amount: '1',
-        merchantCode: 'BCR2DN6TWOU7LT2I');
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
   }
 
+  var cc = new MaskTextInputFormatter(
+      mask: '#### #### #### ####', filter: {"#": RegExp(r'[0-9]')});
+  var exp = new MaskTextInputFormatter(
+      mask: '##/##', filter: {"#": RegExp(r'[0-9]')});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
           Padding(
-            padding: EdgeInsets.only(top: 110),
-            child: Container(
-              height: 141,
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: Color(0xffDCDCDC).withOpacity(0.5)),
-              alignment: Alignment.center,
+            padding: const EdgeInsets.only(top: 100),
+            child: SingleChildScrollView(
               child: Column(
-                children: [
-                  Text(
-                    'Total Tagihan:',
-                    style: Constants.textstyle,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  SizedBox(
+                    height: 40,
                   ),
-                  Text(
-                    '${fc.format(int.parse(data[0]))}',
-                    style: TextStyle(
-                        color: Theme.of(context).accentColor,
-                        fontSize: 36,
-                        fontWeight: FontWeight.w600),
+                  CreditCard(
+                    cardNumber: cardNumber,
+                    cardExpiry: expiryDate,
+                    cardHolderName: cardHolderName,
+                    cardType: CardType.visa,
+                    cvv: cvv,
+                    bankName: "Credit Card",
+                    showBackSide: showBack,
+                    frontBackground: CardBackgrounds.black,
+                    backBackground: CardBackgrounds.white,
+                    showShadow: true,
                   ),
-                  // Text(
-                  //   'Order Details...>>>',
-                  //   style: TextStyle(
-                  //       color: Colors.blueAccent,
-                  //       fontWeight: FontWeight.w600,
-                  //       fontSize: 20),
-                  // )
+                  SizedBox(
+                    height: 40,
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Container(
+                        margin: EdgeInsets.symmetric(
+                          horizontal: 20,
+                        ),
+                        child: TextFormField(
+                          decoration: InputDecoration(hintText: "Card Number"),
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [cc],
+                          maxLength: 19,
+                          onChanged: (value) {
+                            setState(() {
+                              cardNumber = value;
+                            });
+                          },
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(
+                          horizontal: 20,
+                        ),
+                        child: TextFormField(
+                          decoration: InputDecoration(hintText: "Card Expiry"),
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [exp],
+                          maxLength: 5,
+                          onChanged: (value) {
+                            setState(() {
+                              expiryDate = value;
+                            });
+                          },
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(
+                          horizontal: 20,
+                        ),
+                        child: TextFormField(
+                          decoration:
+                              InputDecoration(hintText: "Card Holder Name"),
+                          onChanged: (value) {
+                            setState(() {
+                              cardHolderName = value;
+                            });
+                          },
+                        ),
+                      ),
+                      Container(
+                        margin:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 25),
+                        child: TextFormField(
+                          decoration: InputDecoration(hintText: "CVV"),
+                          keyboardType: TextInputType.number,
+                          maxLength: 3,
+                          onChanged: (value) {
+                            setState(() {
+                              cvv = value;
+                            });
+                          },
+                          focusNode: _focusNode,
+                        ),
+                      ),
+                    ],
+                  )
                 ],
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 0),
-            child: Center(
-                child: Text(
-              'Pay using',
-              style: Constants.boldheading,
-            )),
-          ),
-          FutureBuilder<List<ApplicationMeta>>(
-            future: _appsFuture,
-            builder: (context, snapshot) {
-              if (snapshot.connectionState != ConnectionState.done) {
-                return Center(
-                  child: Text('something went  wrong'),
-                );
-              }
-              return ListView(
-                  padding: EdgeInsets.only(top: 450, right: 30, left: 30),
-                  shrinkWrap: true,
-                  children: snapshot.data.map((app) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 20),
-                      child: GestureDetector(
-                        child: Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Image.memory(
-                                app.icon,
-                                width: 50,
-                                height: 50,
-                              ),
-                              Text(
-                                '${app.upiApplication.getAppName()}',
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: EdgeInsets.only(top: 110),
+              child: Container(
+                height: 101,
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: Color(0xffDCDCDC).withOpacity(0.5)),
+                alignment: Alignment.center,
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      flex: 6,
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Column(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(top: 7),
+                              child: Text(
+                                'Total Tagihan:',
                                 style: Constants.textstyle,
-                              )
-                            ],
-                          ),
+                              ),
+                            ),
+                            Text(
+                              '${fc.format(int.parse(data[0]))}',
+                              style: TextStyle(
+                                  color: Theme.of(context).accentColor,
+                                  fontSize: 27,
+                                  fontWeight: FontWeight.w600),
+                            )
+                          ],
                         ),
                       ),
-                    );
-                  }).toList());
-            },
+                    ),
+                    Expanded(
+                      flex: 4,
+                      child: Align(
+                        alignment: Alignment.centerRight,
+                        child: SizedBox(
+                          width: 200,
+                          height: 55,
+                          child: RaisedButton(
+                              onPressed: () {},
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18.0),
+                                  side: BorderSide(color: Colors.blueGrey)),
+                              color: Colors.blueGrey,
+                              textColor: Colors.white,
+                              child: Text("Bayar".toUpperCase(),
+                                  style: TextStyle(fontSize: 14))),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
           ),
+          // Padding(
+          //   padding: const EdgeInsets.only(top: 0),
+          //   child: Center(
+          //       child: Text(
+          //     'Pay using',
+          //     style: Constants.boldheading,
+          //   )),
+          // ),
           CustomActionBar(
             hastitle: true,
             title: 'Pembayaran',

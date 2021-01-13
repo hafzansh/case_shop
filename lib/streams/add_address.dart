@@ -107,7 +107,7 @@ class AddAddress extends StatelessWidget {
                         ),
                         alignment: Alignment.center,
                         child: Text(
-                          'Add',
+                          'Tambahkan',
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 22,
@@ -125,7 +125,7 @@ class AddAddress extends StatelessWidget {
             hascartbutton: false,
             hasbackground: true,
             hastitle: true,
-            title: 'Add Address',
+            title: 'Alamat',
           )
         ],
       ),

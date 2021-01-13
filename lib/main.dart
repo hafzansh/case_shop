@@ -9,7 +9,7 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget with PortraitModeMixin {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -17,8 +17,7 @@ class MyApp extends StatelessWidget with PortraitModeMixin {
         statusBarColor: Colors.transparent,
         statusBarBrightness: Brightness.dark,
         statusBarIconBrightness: Brightness.dark,
-        systemNavigationBarDividerColor:
-            Colors.black, //Navigation bar divider color
+        systemNavigationBarDividerColor: Colors.black,
         systemNavigationBarIconBrightness: Brightness.dark));
     return GetMaterialApp(
         theme: ThemeData(
@@ -28,42 +27,4 @@ class MyApp extends StatelessWidget with PortraitModeMixin {
             accentColor: Colors.blueGrey),
         home: LandingPage());
   }
-}
-
-mixin PortraitModeMixin on StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    _portraitModeOnly();
-    return null;
-  }
-}
-
-mixin PortraitStatefulModeMixin<T extends StatefulWidget> on State<T> {
-  @override
-  Widget build(BuildContext context) {
-    _portraitModeOnly();
-    return null;
-  }
-
-  @override
-  void dispose() {
-    _enableRotation();
-  }
-}
-
-/// blocks rotation; sets orientation to: portrait
-void _portraitModeOnly() {
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]);
-}
-
-void _enableRotation() {
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-    DeviceOrientation.landscapeLeft,
-    DeviceOrientation.landscapeRight,
-  ]);
 }

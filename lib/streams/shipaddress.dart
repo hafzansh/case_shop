@@ -56,7 +56,7 @@ class _ShippingAddressState extends State<ShippingAddress> {
               if (snapshots.connectionState == ConnectionState.active) {
                 return ListView(
                   padding: EdgeInsets.only(
-                      top: 160, bottom: 50, left: 10, right: 10),
+                      top: 165, bottom: 50, left: 10, right: 10),
                   children: snapshots.data.docs.map<Widget>((document) {
                     return Padding(
                         padding: const EdgeInsets.only(top: 5),
