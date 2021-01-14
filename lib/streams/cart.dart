@@ -205,7 +205,7 @@ class _CartPageState extends State<CartPage> {
                                   InkWell(
                                     onTap: () {
                                       Get.to(ShippingAddress(), arguments: [
-                                        totalcartprice.toString()
+                                        totalcartprice.toString(),
                                       ]);
                                     },
                                     child: Container(

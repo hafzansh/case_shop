@@ -7,6 +7,8 @@ import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:awesome_card/awesome_card.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SelectPaymentPage extends StatefulWidget {
   // ignore: non_constant_identifier_names
@@ -19,6 +21,53 @@ class SelectPaymentPage extends StatefulWidget {
 }
 
 class _SelectPaymentPageState extends State<SelectPaymentPage> {
+  FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  final db = FirebaseFirestore.instance;
+  moveDocumentToOtherCollection(String docId) async {
+    var kek = DateTime.now().toString();
+    var oldColl = db
+        .collection('users')
+        .doc(_firebaseAuth.currentUser.uid)
+        .collection('Cart')
+        .doc(docId);
+    var newColl = db
+        .collection('users')
+        .doc(_firebaseAuth.currentUser.uid)
+        .collection('Transaction')
+        .doc(oldColl.id);
+
+    DocumentSnapshot snapshot = await oldColl.get()
+        // ignore: missing_return
+        .then((docSnapshot) {
+      if (docSnapshot.exists) {
+        // document id does exist
+        print('Successfully found document');
+
+        newColl
+            .set({
+              'price': docSnapshot['price'],
+              'size': docSnapshot['size'],
+              'at': kek
+            })
+            .then((value) => print("document moved to different collection"))
+            .catchError((error) => print("Failed to move document: $error"))
+            .then((value) => ({
+                  oldColl
+                      .delete()
+                      .then((value) =>
+                          print("document removed from old collection"))
+                      .catchError((error) {
+                    newColl.delete();
+                    print("Failed to delete document: $error");
+                  })
+                }));
+      } else {
+        //document id doesnt exist
+        print('Failed to find document id');
+      }
+    });
+  }
+
   var data = Get.arguments;
   final fc = new NumberFormat("Rp #,##0", "en_US");
   String cardNumber = "";
@@ -197,6 +246,8 @@ class _SelectPaymentPageState extends State<SelectPaymentPage> {
                           height: 55,
                           child: RaisedButton(
                               onPressed: () async {
+                                moveDocumentToOtherCollection(
+                                    "JYb67rRHiMZy3ui0RLzu");
                                 //                             final FirebaseAuth _auth = FirebaseAuth.instance;
 
                                 //                             FirebaseUser user = await _auth.currentUser();

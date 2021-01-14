@@ -118,17 +118,17 @@ class _ProductPageState extends State<ProductPage> {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 24.0, vertical: 8.0),
+                        horizontal: 24.0, vertical: 5.0),
                     child: Text(
                       '${documentdetails['description']}' ?? 'Description',
-                      style: TextStyle(fontSize: 16.0),
+                      style: TextStyle(fontSize: 30.0),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 24.0, vertical: 16.0),
+                        horizontal: 24.0, vertical: 18.0),
                     child: Text(
-                      'Select Phone Type',
+                      'Pilih Tipe Handphone',
                       style: Constants.textstyle,
                     ),
                   ),

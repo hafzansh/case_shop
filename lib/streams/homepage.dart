@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
                 _tabno = num;
               });
             },
-            children: [HomeTab(), DesignTab(), SearchTab(), SavedTab()],
+            children: [HomeTab(), DesignTab(), SavedTab(), SearchTab()],
           ),
         ),
         BottomTabs(

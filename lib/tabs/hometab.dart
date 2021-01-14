@@ -30,7 +30,8 @@ class HomeTab extends StatelessWidget {
                       //     MaterialPageRoute(builder: (context) => Design()));
                     },
                     child: Container(
-                      height: 200,
+                      height: 80,
+                      width: 400,
                       decoration: BoxDecoration(
                           color: Colors.blueGrey,
                           borderRadius: BorderRadius.circular(20),
@@ -47,33 +48,15 @@ class HomeTab extends StatelessWidget {
                                     Colors.black.withOpacity(.1)
                                   ])),
                           child: Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Text("3Case",
-                                  style: TextStyle(
-                                      color: Colors.white.withOpacity(.6),
-                                      fontSize: 85,
-                                      fontWeight: FontWeight.bold)),
                               Container(
-                                  height: 50,
-                                  margin: EdgeInsets.symmetric(horizontal: 60),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      gradient: LinearGradient(
-                                          begin: Alignment.bottomCenter,
-                                          colors: [
-                                            Colors.white.withOpacity(.6),
-                                            Colors.white.withOpacity(.9)
-                                          ]),
-                                      color: Colors.white.withOpacity(.9)),
-                                  child: Center(
-                                      child: Text("Buat Desainmu Sendiri",
-                                          style: TextStyle(
-                                              color: Colors.grey[900],
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold)))),
-                              SizedBox(
-                                height: 10,
+                                margin: EdgeInsets.symmetric(horizontal: 20),
+                                child: Text("3Case",
+                                    style: TextStyle(
+                                        color: Colors.white.withOpacity(.6),
+                                        fontSize: 50,
+                                        fontWeight: FontWeight.bold)),
                               ),
                             ],
                           )),

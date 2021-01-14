@@ -108,14 +108,14 @@ class _BottomTabsState extends State<BottomTabs> {
                 widget.ontabclick(1);
               }),
           BottomTabsButton(
-            icon: Icons.search,
+            icon: Icons.favorite,
             selected: _activetab == 2,
             onPressed: () {
               widget.ontabclick(2);
             },
           ),
           BottomTabsButton(
-            icon: Icons.favorite,
+            icon: Icons.search,
             selected: _activetab == 3,
             onPressed: () {
               widget.ontabclick(3);
