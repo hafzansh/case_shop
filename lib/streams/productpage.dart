@@ -24,7 +24,7 @@ class _ProductPageState extends State<ProductPage> {
 
   int z = 0; //is saved flag variable
 
-  String _selectedproductcapacity = '0.5';
+  String _selectedproductcapacity = '';
 
   final SnackBar _snackBar = SnackBar(
       content: Text('Produk ditambahkan ke keranjang'),

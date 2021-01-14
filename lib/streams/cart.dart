@@ -187,7 +187,7 @@ class _CartPageState extends State<CartPage> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'SubTotal : ',
+                                        'Sub Total : ',
                                         style: TextStyle(
                                             color: Colors.white70,
                                             fontSize: 18,

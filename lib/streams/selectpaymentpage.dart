@@ -196,14 +196,22 @@ class _SelectPaymentPageState extends State<SelectPaymentPage> {
                           width: 200,
                           height: 55,
                           child: RaisedButton(
-                              onPressed: () {},
+                              onPressed: () async {
+                                //                             final FirebaseAuth _auth = FirebaseAuth.instance;
+
+                                //                             FirebaseUser user = await _auth.currentUser();
+                                //                             userFirebaseInstance
+                                // .collection(NewCollection)
+                                // .document()
+                                // .setData(YourDataHere)
+                              },
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(18.0),
                                   side: BorderSide(color: Colors.blueGrey)),
                               color: Colors.blueGrey,
                               textColor: Colors.white,
                               child: Text("Bayar".toUpperCase(),
-                                  style: TextStyle(fontSize: 14))),
+                                  style: TextStyle(fontSize: 16))),
                         ),
                       ),
                     )

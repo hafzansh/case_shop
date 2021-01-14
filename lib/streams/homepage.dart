@@ -1,3 +1,4 @@
+import 'package:poggers/tabs/designtab.dart';
 import 'package:poggers/tabs/hometab.dart';
 import 'package:poggers/tabs/savedtab.dart';
 import 'package:poggers/tabs/searchtab.dart';
@@ -39,7 +40,7 @@ class _HomePageState extends State<HomePage> {
                 _tabno = num;
               });
             },
-            children: [HomeTab(), HomeTab(), SearchTab(), SavedTab()],
+            children: [HomeTab(), DesignTab(), SearchTab(), SavedTab()],
           ),
         ),
         BottomTabs(
